@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "838712454003",
+    "firebase_url": "https://pub-trivia-8f68c.firebaseio.com",
+    "project_id": "pub-trivia-8f68c",
+    "storage_bucket": "pub-trivia-8f68c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838712454003:android:868726d116c2c85352b306",
+        "android_client_info": {
+          "package_name": "com.roylety.bar_trivia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838712454003-kvpg6anqsl8eqlgnefvlsl7qa7sjeino.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2Dl_cyV_RlTWLjhMUYFZEc8HD-qhbcR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838712454003-kvpg6anqsl8eqlgnefvlsl7qa7sjeino.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>838712454003-4ah58jetabft9slk5fltkpjjfop4ueo7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.838712454003-4ah58jetabft9slk5fltkpjjfop4ueo7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBoTPnH3v_lL5k8sMt1acwhOu4lImcgTfI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>838712454003</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.roylety.pubtrivia</string>
+	<key>PROJECT_ID</key>
+	<string>pub-trivia-8f68c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pub-trivia-8f68c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:838712454003:ios:0fda45527ca7abdd52b306</string>
+	<key>DATABASE_URL</key>
+	<string>https://pub-trivia-8f68c.firebaseio.com</string>
+</dict>
+</plist>
