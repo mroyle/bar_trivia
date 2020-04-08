@@ -23,6 +23,17 @@ class DatabaseService {
     return User(uid: userID);
   }
 
+  Future getUserData(User user) async {
+    DocumentSnapshot snap = await userCollection.document(user.uid).get();
+    return User(
+        uid: user.uid,
+        firstName: snap.data['first_name'],
+        lastName: snap.data['last_name'],
+        isAdmin: snap.data['isAdmin'],
+        isModerator: snap.data['isModerator'],
+        hasBeenUpdated: snap.data['hasBeenUpdated']);
+  }
+
   Future updateUserData(User user) async {
     return await userCollection.document(uid).setData({
       'first_name': user.firstName,
@@ -58,7 +69,7 @@ class DatabaseService {
                             return Question(
                                 text: values['text'],
                                 answer: values['answer'],
-                                isCurrentQuestion: values['isCurrentQuestion'],
+                                hasBeenAsked: values['has_been_asked'],
                                 answers: values['answers'] == null
                                     ? List<Answer>()
                                     : List.castFrom(values['answers'])
@@ -67,7 +78,9 @@ class DatabaseService {
                                             Map.castFrom(answerValue);
                                         return Answer(
                                             playerID: answerValues['player_id'],
-                                            text: answerValues['text']);
+                                            text: answerValues['text'],
+                                            isCorrect:
+                                                answerValues['is_correct']);
                                       }).toList());
                           }).toList());
               }).toList(),
@@ -98,9 +111,13 @@ class DatabaseService {
             return {
               'text': question.text,
               'answer': question.answer,
-              'isCurrentQuestion': question.isCurrentQuestion,
+              'has_been_asked': question.hasBeenAsked,
               'answers': question.answers.map((answer) {
-                return {'player_id': answer.playerID, 'text': answer.text};
+                return {
+                  'player_id': answer.playerID,
+                  'text': answer.text,
+                  'is_correct': answer.isCorrect
+                };
               }).toList()
             };
           }).toList()
@@ -154,31 +171,44 @@ class DatabaseService {
       location: 'Seawolf',
       when: eventtime,
       isActive: false,
-      teamNames: [TeamName(teamName: "Test team", userID: "2")],
+      teamNames: [
+        TeamName(teamName: "House on Fire", userID: "1"),
+        TeamName(teamName: "Brain Dump", userID: "2")
+      ],
       rounds: [
         Round(
             number: 1,
             theme: "History",
-            isActive: false,
+            isActive: true,
             isComplete: false,
             questions: [
               Question(
                 text: "What was Alexander the Great's horse's name?",
                 answer: "Buchephalus",
-                isCurrentQuestion: false,
-                answers: List<Answer>(),
+                hasBeenAsked: true,
+                answers: [
+                  Answer(playerID: "2", text: "Buchephalus", isCorrect: true),
+                  Answer(playerID: "1", text: "Horse", isCorrect: false)
+                ],
               ),
               Question(
                 text: "What year was Julius Caesar assassinated?",
                 answer: "44 BC",
-                isCurrentQuestion: false,
-                answers: List<Answer>(),
+                hasBeenAsked: true,
+                answers: [
+                  Answer(
+                      playerID: "2", text: "Fourty Four BC", isCorrect: false),
+                  Answer(playerID: "1", text: "44 BC", isCorrect: true)
+                ],
               ),
               Question(
                 text: "What was the first state?",
                 answer: "Deleware",
-                isCurrentQuestion: false,
-                answers: List<Answer>(),
+                hasBeenAsked: true,
+                answers: [
+                  Answer(playerID: "2", text: "Deleware", isCorrect: true),
+                  Answer(playerID: "1", text: "Deleware", isCorrect: true)
+                ],
               ),
             ]),
         Round(
@@ -190,19 +220,19 @@ class DatabaseService {
               Question(
                 text: "In which city was Jim Morrison buried?",
                 answer: "Paris",
-                isCurrentQuestion: false,
+                hasBeenAsked: false,
                 answers: List<Answer>(),
               ),
               Question(
                 text: "How much does the Chewbacca costume weigh?",
                 answer: "8 pounds",
-                isCurrentQuestion: false,
+                hasBeenAsked: false,
                 answers: List<Answer>(),
               ),
               Question(
                 text: "Which name is rapper Sean Combs better known by?",
                 answer: "P. Diddy",
-                isCurrentQuestion: false,
+                hasBeenAsked: false,
                 answers: List<Answer>(),
               ),
             ]),
@@ -215,19 +245,19 @@ class DatabaseService {
               Question(
                 text: "Hg is the chemical symbol of which element?",
                 answer: "Mercury",
-                isCurrentQuestion: false,
+                hasBeenAsked: false,
                 answers: List<Answer>(),
               ),
               Question(
                 text: "Pure water as a pH level of around?",
                 answer: "7",
-                isCurrentQuestion: false,
+                hasBeenAsked: false,
                 answers: List<Answer>(),
               ),
               Question(
                 text: "What’s the hardest rock?",
                 answer: "Diamond",
-                isCurrentQuestion: false,
+                hasBeenAsked: false,
                 answers: List<Answer>(),
               ),
             ])

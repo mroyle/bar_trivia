@@ -3,10 +3,10 @@ import 'answer.dart';
 class Question {
   final String text;
   final String answer;
-  final bool isCurrentQuestion;
+  bool hasBeenAsked;
   final List<Answer> answers;
 
-  Question({this.text, this.answer, this.isCurrentQuestion, this.answers});
+  Question({this.text, this.answer, this.hasBeenAsked, this.answers});
 
   bool hasUserAnswered(String userID) {
     return getAnswerForID(userID) != null;

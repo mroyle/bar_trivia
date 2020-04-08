@@ -66,7 +66,7 @@ class _ActiveEventState extends State<ActiveEvent> {
     Question currentQuestion = Question();
     event.rounds.forEach((round) {
       round.questions.forEach((question) {
-        if (question.isCurrentQuestion) {
+        if (question.hasBeenAsked) {
           currentQuestion = question;
         }
       });

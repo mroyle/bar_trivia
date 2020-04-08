@@ -4,8 +4,8 @@ import 'package:bar_trivia/models/team_name.dart';
 class Round {
   final int number;
   final String theme;
-  final bool isActive;
-  final bool isComplete;
+  bool isActive;
+  bool isComplete;
   final List<Question> questions;
 
   Round(
@@ -23,5 +23,13 @@ class Round {
       }
     });
     return score;
+  }
+
+  void endRound() {
+    isActive = false;
+    isComplete = true;
+    questions.forEach((q) {
+      q.hasBeenAsked = false;
+    });
   }
 }

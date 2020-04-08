@@ -26,7 +26,7 @@ class TriviaEvent {
     bool response = false;
     rounds.forEach((round) {
       round.questions.forEach((question) {
-        if (question.isCurrentQuestion) {
+        if (question.hasBeenAsked) {
           response = true;
         }
       });
@@ -41,7 +41,7 @@ class TriviaEvent {
     if (round != null) {
       round.questions.forEach((q) {
         print(q.text);
-        if (q.isCurrentQuestion) {
+        if (q.hasBeenAsked) {
           question = q;
         }
       });
@@ -69,14 +69,18 @@ class TriviaEvent {
     return result;
   }
 
-  String getTeamName(User user) {
+  String getTeamNameByUserID(String uid) {
     String result = "";
     teamNames.forEach((team) {
-      if (team.userID == user.uid) {
+      if (team.userID == uid) {
         result = team.teamName;
       }
     });
     return result;
+  }
+
+  String getTeamName(User user) {
+    return getTeamNameByUserID(user.uid);
   }
 
   Round latestCompletedRound() {
@@ -110,14 +114,18 @@ class TriviaEvent {
     int lastCompletedRound =
         latestCompletedRound() == null ? 0 : latestCompletedRound().number;
     for (int index = 1; index <= lastCompletedRound; index++) {
-      scores.add(RoundScores(
-          roundNumber: index,
-          scores: teamNames
-              .map((team) => Score(
-                  team: team,
-                  score: getRoundByNumber(index).getScoreForTeamName(team)))
-              .toList()));
+      scores.add(getScoresForRound(index));
     }
     return scores;
+  }
+
+  RoundScores getScoresForRound(int roundNumber) {
+    return RoundScores(
+        roundNumber: roundNumber,
+        scores: teamNames
+            .map((team) => Score(
+                team: team,
+                score: getRoundByNumber(roundNumber).getScoreForTeamName(team)))
+            .toList());
   }
 }
