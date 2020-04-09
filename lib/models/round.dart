@@ -18,8 +18,10 @@ class Round {
   int getScoreForTeamName(TeamName teamName) {
     int score = 0;
     questions.forEach((question) {
-      if (question.getAnswerForID(teamName.userID).text == question.answer) {
-        score++;
+      if (question.getAnswerForID(teamName.userID) != null) {
+        if (question.getAnswerForID(teamName.userID).text == question.answer) {
+          score++;
+        }
       }
     });
     return score;

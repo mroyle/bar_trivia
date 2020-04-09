@@ -42,26 +42,7 @@ class _EventState extends State<Event> {
       if (!event.isActive) {
         print('event not active');
         return UpcomingEvent(eventID: event.id, user: widget.user);
-      } else {
-        Round round = event.getCurrentRound();
-        if (round == null) {
-          print("round is null");
-          if (event.latestCompletedRound() == null) {
-            return WaitingOnModerator();
-          } else {
-            return ScoreDisplay(eventID: event.id, user: widget.user);
-          }
-        } else {
-          Question question = event.getCurrentQuestion();
-          if (question == null) {
-            print("question is null");
-            return RoundDisplay(eventID: event.id, user: widget.user);
-          } else {
-            print("displaying question");
-            return ActiveEvent(eventID: event.id, user: widget.user);
-          }
-        }
-      }
+      } else {}
     }
   }
 }

@@ -88,7 +88,6 @@ class DatabaseService {
             ? List<TeamName>()
             : List.castFrom(document.data["team_names"].map((value) {
                 Map<dynamic, dynamic> values = Map.castFrom(value);
-                print(values['team_name']);
                 return TeamName(
                     userID: values['user_id'], teamName: values['team_name']);
               }).toList()),
@@ -173,7 +172,10 @@ class DatabaseService {
       isActive: false,
       teamNames: [
         TeamName(teamName: "House on Fire", userID: "1"),
-        TeamName(teamName: "Brain Dump", userID: "2")
+        TeamName(teamName: "Brain Dump", userID: "2"),
+        TeamName(
+            teamName: "Playa in da house",
+            userID: "GQfxo3JincgCSVYMipHF5X7CxiJ3")
       ],
       rounds: [
         Round(
@@ -204,11 +206,8 @@ class DatabaseService {
               Question(
                 text: "What was the first state?",
                 answer: "Deleware",
-                hasBeenAsked: true,
-                answers: [
-                  Answer(playerID: "2", text: "Deleware", isCorrect: true),
-                  Answer(playerID: "1", text: "Deleware", isCorrect: true)
-                ],
+                hasBeenAsked: false,
+                answers: [],
               ),
             ]),
         Round(

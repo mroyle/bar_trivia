@@ -1,5 +1,4 @@
 import 'package:bar_trivia/models/answer.dart';
-import 'package:bar_trivia/models/question.dart';
 import 'package:bar_trivia/models/trivia_event.dart';
 import 'package:bar_trivia/services/database.dart';
 import 'package:flutter/material.dart';

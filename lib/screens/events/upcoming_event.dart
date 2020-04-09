@@ -113,8 +113,8 @@ class _UpcomingEventState extends State<UpcomingEvent> {
           SizedBox(height: 20),
           TextFormField(
             decoration:
-                textInputDecoration.copyWith(hintText: 'Enter First Name'),
-            validator: (val) => val.isEmpty ? 'Enter your first name' : null,
+                textInputDecoration.copyWith(hintText: 'Enter Team Name'),
+            validator: (val) => val.isEmpty ? 'Enter your team name' : null,
             onChanged: (value) {
               setState(() => teamName = value);
             },

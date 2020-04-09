@@ -1,4 +1,4 @@
-import 'package:bar_trivia/screens/events/event.dart';
+import 'package:bar_trivia/screens/events/round_list.dart';
 import 'package:flutter/material.dart';
 import 'package:bar_trivia/models/trivia_event.dart';
 import 'package:bar_trivia/models/user.dart';
@@ -49,7 +49,10 @@ class TriviaEventTile extends StatelessWidget {
                       builder: (context) {
                         return StreamProvider<List<TriviaEvent>>.value(
                             value: DatabaseService().triviaEvents,
-                            child: Event(eventID: eventID, user: user));
+                            child: RoundList(
+                              user: user,
+                              eventID: eventID,
+                            ));
                       },
                     ));
                   },
